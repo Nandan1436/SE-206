@@ -11,8 +11,8 @@ public class University {
 	
 	public void getFullNames() {
 		for(int i=0;i<persons.size();i++) {
-			System.out.println(persons.get(i));
-			if(i!=persons.size()-1)System.out.println(", ");;
+			System.out.print(persons.get(i).firstName+" "+persons.get(i).lastName);
+			if(i!=persons.size()-1)System.out.print(", ");;
 		}
 		System.out.println();
 	}
@@ -27,9 +27,9 @@ public class University {
 	}
 	
 	public Person getOldestPerson() {
-		Person oldest = null;
+		Person oldest = new Person(null,null,0);
 		for(int i=0;i<persons.size();i++) {
-			if(persons.get(i).getAge()>oldest.getAge())oldest=persons.get(i);
+			if(persons.get(i).getAge() > oldest.getAge())oldest=persons.get(i);
 		}
 		return oldest;
 	}
@@ -42,11 +42,12 @@ public class University {
 		return canVote;
 	}
 	
-	/*
-	 * public int getNumberOfEmployees() {
-	 * 
-	 * 
-	 * }
-	 */
+	public int getNumberOfEmployees() {
+		int count=0;
+		for(Person p : persons) {
+			if(p.getFullName().contains("Employee"))count++;
+		}
+		return count;
+	}
 	
 }
